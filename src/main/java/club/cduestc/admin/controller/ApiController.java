@@ -62,6 +62,7 @@ public class ApiController {
                          @RequestParam("contact") String contact){
         Subject subject = SecurityUtils.getSubject();
         String userId = (String) subject.getPrincipal();
+        if(!contact.startsWith("http")) contact = "mqqwpa://im/chat?chat_type=wpa&uin=" + contact;
         mapper.addJob(title, host, local, desc, type, min, max, unit, contact, userId);
     }
 }
