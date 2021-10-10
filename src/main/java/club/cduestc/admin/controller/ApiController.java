@@ -38,7 +38,7 @@ public class ApiController {
     public String logout(){
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "login";
+        return "redirect:../login";
     }
 
     @RequestMapping(value = "/delete-job", method = RequestMethod.GET)
