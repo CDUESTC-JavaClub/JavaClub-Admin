@@ -43,6 +43,22 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
+
+    <script>
+        function login() {
+            $.post( "/api/login", {
+                username: $("#username").val(),
+                password: $("#password").val(),
+                remember_me: $("#remember-me")[0].checked
+            }, function (data){
+                if(data.status !== 200){
+                    $("#tip").html(data.data)
+                }else {
+                    window.location = data.data
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -456,13 +472,14 @@
                                                 <div class="auth-logo__text">JavaClub Admin</div>
                                             </div>
                                             <p class="auth-panel__text">登陆到JavaClub运维平台</p>
+                                            <p class="auth-panel__text" style="color: red" id="tip"></p>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group input-group--prepend"><span class="input-group__prepend">
                             <svg class="icon-icon-user">
                               <use xlink:href="#icon-user"></use>
                             </svg></span>
-                                                <input class="input" type="email" value="example@mail.com" required>
+                                                <input class="input" id="username" type="email" placeholder="学号" required>
                                             </div>
                                         </div>
                                         <div class="form-group mb-4">
@@ -470,7 +487,7 @@
                             <svg class="icon-icon-password">
                               <use xlink:href="#icon-password"></use>
                             </svg></span>
-                                                <input class="input" type="password" value="123456" required>
+                                                <input class="input" id="password" type="password" placeholder="密码" required>
                                             </div>
                                         </div>
                                         <div class="row align-items-center">
@@ -478,7 +495,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group input-group--prepend">
                                                         <label class="checkbox">
-                                                            <input type="checkbox" checked><span class="checkbox__marker"><span class="checkbox__marker-icon">
+                                                            <input id="remember-me" type="checkbox" checked="checked"><span class="checkbox__marker"><span class="checkbox__marker-icon">
                                     <svg class="icon-icon-checked">
                                       <use xlink:href="#icon-checked"></use>
                                     </svg></span></span><span class="ml-2">记住登陆</span>
@@ -488,7 +505,8 @@
                                             </div>
                                         </div>
                                         <div class="auth-panel__submit">
-                                            <button class="button button--primary button--block" type="button" onclick="javascript:location.href = 'index.html'"><span class="button__text">登陆</span>
+                                            <button class="button button--primary button--block" type="button" onclick="login()">
+                                                <span id="login_btn" class="button__text">登陆</span>
                                             </button>
                                         </div>
                                     </div>
@@ -536,5 +554,4 @@
     <script src="js/components.js"></script>
     <script src="js/common.js"></script>
 </body>
-
 </html>
