@@ -10,4 +10,9 @@ public class PageController {
     public String login(){
         return "login";
     }
+
+    @RequestMapping("/jobs")
+    public String jobs(){
+        return "jobs";
+    }
 }

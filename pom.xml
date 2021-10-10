@@ -34,6 +34,16 @@
             <artifactId>shiro-spring</artifactId>
             <version>1.7.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.76</version>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
