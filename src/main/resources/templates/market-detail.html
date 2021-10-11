@@ -12,6 +12,7 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="referrer" content="no-referrer" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/apexcharts.css" />
     <link rel="stylesheet" href="css/tippy/tippy.css" />
@@ -465,10 +466,15 @@
                 <div class="sidebar__content" data-simplebar="data-simplebar">
                     <nav class="sidebar__nav">
                         <ul class="sidebar__menu">
-                            <li class="sidebar__menu-item"><a class="sidebar__link active" href="/market" aria-expanded="false"><span class="sidebar__link-icon">
+                            <li class="sidebar__menu-item"><a class="sidebar__link" href="/market" aria-expanded="false"><span class="sidebar__link-icon">
                       <svg class="icon-icon-dashboard">
                         <use xlink:href="#icon-dashboard"></use>
                       </svg></span><span class="sidebar__link-text">跳蚤市场</span></a>
+                            </li>
+                            <li class="sidebar__menu-item"><a class="sidebar__link active" th:href="'/market-detail?id='+${item.getId()}" aria-expanded="false"><span class="sidebar__link-icon">
+                      <svg class="icon-icon-cart">
+                        <use xlink:href="#icon-dashboard"></use>
+                      </svg></span><span class="sidebar__link-text">商品详情</span></a>
                             </li>
                         </ul>
                     </nav>
