@@ -1,9 +1,6 @@
 package club.cduestc.admin.dao;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -28,4 +25,10 @@ public interface AdminMapper {
 
     @Select("select id, name, `desc`, images, qq_link, price, user_id, time, type from app_market where status = 0 and id = #{id}")
     ItemDetailEntity getDetailItem(int id);
+
+    @Update("update app_market set status = 1 where id = #{id} and status = 0")
+    void confirmItem(int id);
+
+    @Delete("delete from app_market where id = #{id} and status = 0")
+    void cancelItem(int id);
 }

@@ -68,4 +68,16 @@ public class ApiController {
         if(!contact.startsWith("http")) contact = "mqqwpa://im/chat?chat_type=wpa&uin=" + contact;
         mapper.addJob(title, host, local, desc, type, min, max, unit, contact, userId);
     }
+
+    @RequestMapping("/confirm-item")
+    @ResponseBody
+    public void confirmItem(@RequestParam("id") int id){
+        mapper.confirmItem(id);
+    }
+
+    @RequestMapping("/cancel-item")
+    @ResponseBody
+    public void cancelItem(@RequestParam("id") int id){
+        mapper.cancelItem(id);
+    }
 }
