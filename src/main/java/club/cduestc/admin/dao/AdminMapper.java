@@ -22,4 +22,10 @@ public interface AdminMapper {
     @Insert("insert into app_jobs (name, `desc`, host, local, min_salary, max_salary, unit, type, time, contact, publisher) " +
             "value (#{title}, #{desc}, #{host}, #{local}, #{min}, #{max}, #{unit}, #{type}, NOW(), #{contact}, #{userId})")
     void addJob(String title, String host, String local, String desc, String type, int min, int max, String unit, String contact, String userId);
+
+    @Select("select id, name, qq_link, price, user_id, time, type from app_market where status = 0")
+    List<ItemEntity> getAllItem();
+
+    @Select("select id, name, `desc`, images, qq_link, price, user_id, time, type from app_market where status = 0 and id = #{id}")
+    ItemDetailEntity getDetailItem(int id);
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/api")
@@ -21,13 +22,15 @@ public class ApiController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Response login(@RequestParam("username") String username,
-                            @RequestParam("password") String password,
-                            @RequestParam("remember_me") boolean remember_me){
+                          @RequestParam("password") String password,
+                          @RequestParam("remember_me") boolean remember_me,
+                          HttpSession session){
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, remember_me);
         try {
             subject.login(token);
             UserAccount account = mapper.getAccountByStudentId(username);
+            session.setAttribute("account", account);
             return new Response(200, "/"+account.getRole());
         }catch (Exception e){
             return new Response(401, "登陆失败，用户名或密码错误！");
